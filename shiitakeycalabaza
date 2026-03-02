@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convita · Tarta Shiitake y Calabaza</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --convita-green: #3A8C3F;
+  --convita-dark: #2D6E31;
+  --convita-light: #E8F5E9;
+  --warm: #F5E6D0;
+  --warm-dark: #E8D4B8;
+  --earth: #8B6914;
+  --shiitake: #6B4226;
+  --calabaza: #E87B1F;
+  --text: #2C2C2C;
+  --text-soft: #5A5A5A;
+  --cream: #FFFDF8;
+  --sage: #A8C5A0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  color: var(--text);
+  background: var(--cream);
+  overflow-x: hidden;
+}
+
+/* ========== HERO ========== */
+.hero {
+  min-height: 90vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left {
+  background: var(--convita-green);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 80px;
+  position: relative;
+}
+
+.hero-left::after {
+  content: '';
+  position: absolute;
+  right: -80px;
+  top: 0;
+  bottom: 0;
+  width: 160px;
+  background: var(--convita-green);
+  clip-path: ellipse(80px 50% at 0% 50%);
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 40px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  width: fit-content;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.brand-badge svg { width: 18px; height: 18px; }
+
+.hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(42px, 5vw, 68px);
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  animation: slideUp 0.9s ease-out;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--warm);
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+  max-width: 440px;
+  font-weight: 300;
+  margin-bottom: 36px;
+  animation: slideUp 1s ease-out 0.1s both;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  animation: slideUp 1s ease-out 0.2s both;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 13px;
+  color: #fff;
+  font-weight: 400;
+}
+
+.hero-tag svg { width: 16px; height: 16px; opacity: 0.9; }
+
+.hero-right {
+  background: linear-gradient(135deg, var(--warm) 0%, var(--warm-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-right::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,123,31,0.15), transparent 70%);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.product-visual {
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #D4A25C 0%, #B8862D 40%, #8B6914 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(107,66,38,0.3), inset 0 -5px 20px rgba(0,0,0,0.15);
+  animation: floatIn 1.2s ease-out;
+}
+
+.product-visual::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255,255,255,0.25);
+}
+
+.product-emoji {
+  font-size: 120px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.product-weight {
+  position: absolute;
+  bottom: -20px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 10px 28px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.product-weight span { color: var(--convita-green); }
+
+/* ========== COOKING STRIP ========== */
+.cooking-strip {
+  background: #fff;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 28px 0;
+}
+
+.cooking-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding: 0 40px;
+}
+
+.cook-step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cook-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.cook-icon.preheat { background: #FFF3E0; }
+.cook-icon.place { background: #E8F5E9; }
+.cook-icon.time { background: #FBE9E7; }
+
+.cook-label { font-size: 14px; color: var(--text-soft); line-height: 1.4; }
+.cook-label strong { display: block; color: var(--text); font-weight: 600; }
+
+.cook-arrow {
+  color: #ccc;
+  font-size: 20px;
+}
+
+/* ========== INGREDIENTS SECTION ========== */
+.ingredients-section {
+  padding: 100px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--convita-green);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(32px, 3.5vw, 48px);
+  color: var(--text);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.section-desc {
+  font-size: 17px;
+  color: var(--text-soft);
+  line-height: 1.7;
+  max-width: 600px;
+  margin-bottom: 60px;
+  font-weight: 300;
+}
+
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.ingredient-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+  border: 1px solid #f0ede8;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ingredient-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 20px 20px 0 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ingredient-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+
+.ingredient-card:hover::before { opacity: 1; }
+
+.ingredient-card.calabaza::before { background: var(--calabaza); }
+.ingredient-card.shiitake::before { background: var(--shiitake); }
+.ingredient-card.cebolla::before { background: #9C27B0; }
+.ingredient-card.garbanzo::before { background: #F9A825; }
+.ingredient-card.especias::before { background: var(--convita-green); }
+
+.ing-emoji {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.ing-name {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.ing-benefit {
+  font-size: 13px;
+  color: var(--text-soft);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ========== WELLNESS ICONS SECTION ========== */
+.wellness-section {
+  background: var(--convita-green);
+  padding: 80px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wellness-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.wellness-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.wellness-section .section-label { color: rgba(255,255,255,0.6); }
+.wellness-section .section-title { color: #fff; }
+.wellness-section .section-desc { color: rgba(255,255,255,0.75); }
+
+.wellness-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.wellness-badge {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.wellness-badge:hover {
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-3px);
+}
+
+.wb-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.wb-label {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ========== OCTOGONOS ========== */
+.octogonos-section {
+  padding: 70px 40px;
+  text-align: center;
+  background: var(--convita-light);
+}
+
+.octogonos-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.octogonos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 2px solid var(--convita-green);
+  border-radius: 60px;
+  padding: 16px 36px;
+  margin-bottom: 28px;
+}
+
+.octogonos-badge svg { width: 28px; height: 28px; color: var(--convita-green); }
+.octogonos-badge span { font-size: 18px; font-weight: 600; color: var(--convita-green); }
+
+.octogonos-text {
+  font-size: 16px;
+  color: var(--text-soft);
+  line-height: 1.7;
+  max-width: 650px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+}
+
+.restrictions-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.restriction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.restriction-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  border: 2px solid #e8e8e8;
+}
+
+.restriction-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ========== NUTRITIONAL TABLE ========== */
+.nutrition-section {
+  padding: 100px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.nutrition-left {}
+
+.nutri-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.nutri-table thead {
+  background: var(--convita-green);
+}
+
+.nutri-table th {
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  text-align: left;
+  letter-spacing: 0.5px;
+}
+
+.nutri-table th:last-child { text-align: center; }
+
+.nutri-table td {
+  padding: 13px 20px;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.nutri-table td:last-child {
+  text-align: center;
+  color: var(--text-soft);
+  font-weight: 500;
+}
+
+.nutri-table tr:last-child td { border-bottom: none; }
+
+.nutri-table tr:hover { background: #fafdf9; }
+
+.nutri-highlight {
+  color: var(--convita-green);
+  font-weight: 600;
+}
+
+.nutri-portion {
+  background: var(--convita-light);
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--convita-dark);
+}
+
+.nutri-footnote {
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-top: 12px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ========== SHIITAKE STORY ========== */
+.story-section {
+  padding: 100px 40px;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--warm) 100%);
+}
+
+.story-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.story-question {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 3vw, 40px);
+  color: var(--shiitake);
+  margin-bottom: 40px;
+  line-height: 1.3;
+}
+
+.story-body {
+  font-size: 17px;
+  color: var(--text-soft);
+  line-height: 1.9;
+  font-weight: 300;
+  text-align: left;
+}
+
+.story-body p { margin-bottom: 24px; }
+
+.story-body strong { color: var(--text); font-weight: 500; }
+
+.story-highlight {
+  background: linear-gradient(135deg, var(--shiitake), #8B5E3C);
+  color: #fff;
+  border-radius: 20px;
+  padding: 36px 40px;
+  margin: 40px 0;
+  text-align: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* ========== CONSERVATION ========== */
+.conservation-section {
+  padding: 60px 40px;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+
+.conservation-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.cons-card {
+  text-align: center;
+  padding: 24px 16px;
+  border-radius: 16px;
+  background: #fafafa;
+  border: 1px solid #f0f0f0;
+}
+
+.cons-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+.cons-temp { font-weight: 700; font-size: 18px; color: var(--text); margin-bottom: 4px; }
+.cons-duration { font-size: 13px; color: var(--text-soft); font-weight: 300; }
+
+/* ========== FOOTER / CTA ========== */
+.cta-section {
+  background: var(--convita-green);
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.cta-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.cta-text {
+  color: rgba(255,255,255,0.8);
+  font-size: 16px;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: 40px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+}
+
+.cta-btn.primary {
+  background: #fff;
+  color: var(--convita-green);
+}
+
+.cta-btn.primary:hover { background: var(--warm); transform: translateY(-2px); }
+
+.cta-btn.secondary {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.4);
+}
+
+.cta-btn.secondary:hover {
+  border-color: #fff;
+  transform: translateY(-2px);
+}
+
+.footer-info {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes floatIn { from { opacity: 0; transform: scale(0.8) translateY(40px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.15); opacity: 0.8; } }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 60px 30px; }
+  .hero-left::after { display: none; }
+  .hero-right { padding: 60px 30px; min-height: 400px; }
+  .product-visual { width: 280px; height: 280px; }
+  .product-emoji { font-size: 80px; }
+  .cooking-inner { flex-direction: column; gap: 24px; }
+  .cook-arrow { transform: rotate(90deg); }
+  .nutrition-section { grid-template-columns: 1fr; gap: 40px; }
+  .conservation-inner { grid-template-columns: repeat(2, 1fr); }
+  .ingredients-section, .story-section { padding: 60px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="brand-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      Convita · Libre de Gluten
+    </div>
+    <h1 class="hero-title">
+      Tarta <em>Shiitake</em><br>y Calabaza
+    </h1>
+    <p class="hero-subtitle">
+      Calabaza asada combinada con hongos shiitake y cebolla, envuelta en una masa crocante. Sin gluten, sin octógonos, sin complicaciones.
+    </p>
+    <div class="hero-tags">
+      <span class="hero-tag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
+        Libre de gluten
+      </span>
+      <span class="hero-tag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9"/><path d="M15 3a3 3 0 110 6"/></svg>
+        Sin lácteos
+      </span>
+      <span class="hero-tag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Sin huevo
+      </span>
+      <span class="hero-tag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 20l5-5 5 5"/><path d="M12 15V3"/></svg>
+        Vegetariano
+      </span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="product-visual">
+      <span class="product-emoji">🥧</span>
+      <div class="product-weight">Peso neto <span>260 g</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COOKING STRIP ===== -->
+<section class="cooking-strip">
+  <div class="cooking-inner">
+    <div class="cook-step">
+      <div class="cook-icon preheat">🔥</div>
+      <div class="cook-label"><strong>Precalentar horno</strong>a 180 °C</div>
+    </div>
+    <span class="cook-arrow">→</span>
+    <div class="cook-step">
+      <div class="cook-icon place">🧊</div>
+      <div class="cook-label"><strong>Colocar congelada</strong>directo al horno</div>
+    </div>
+    <span class="cook-arrow">→</span>
+    <div class="cook-step">
+      <div class="cook-icon time">⏱️</div>
+      <div class="cook-label"><strong>Hornear 15 min</strong>¡y listo para disfrutar!</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INGREDIENTS ===== -->
+<section class="ingredients-section">
+  <div class="section-label">Ingredientes Destacados</div>
+  <h2 class="section-title">Cada ingrediente, elegido con propósito</h2>
+  <p class="section-desc">
+    No solo buscamos sabor. Cada componente de esta tarta fue seleccionado por sus propiedades funcionales y su aporte al bienestar.
+  </p>
+  <div class="ingredients-grid">
+    <div class="ingredient-card calabaza">
+      <span class="ing-emoji">🎃</span>
+      <div class="ing-name">Calabaza</div>
+      <div class="ing-benefit">Baja en calorías, rica en fibras, vitaminas A y C, y minerales esenciales. Aporta dulzura natural y cremosidad.</div>
+    </div>
+    <div class="ingredient-card shiitake">
+      <span class="ing-emoji">🍄</span>
+      <div class="ing-name">Hongo Shiitake</div>
+      <div class="ing-benefit">Alto contenido de proteínas (~18% en seco), fuente de vitamina D y B. Antioxidante, antiinflamatorio y fortalecedor del sistema inmunológico.</div>
+    </div>
+    <div class="ingredient-card cebolla">
+      <span class="ing-emoji">🧅</span>
+      <div class="ing-name">Cebolla</div>
+      <div class="ing-benefit">Rica en quercetina, vitaminas C y B. Potente prebiótico que favorece la salud intestinal y la microbiota.</div>
+    </div>
+    <div class="ingredient-card garbanzo">
+      <span class="ing-emoji">🫘</span>
+      <div class="ing-name">Harina de Garbanzo</div>
+      <div class="ing-benefit">Rica en proteínas, fibra y carbohidratos de absorción lenta. Fuente de magnesio, potasio y hierro.</div>
+    </div>
+    <div class="ingredient-card especias">
+      <span class="ing-emoji">🌿</span>
+      <div class="ing-name">Orégano y Tomillo</div>
+      <div class="ing-benefit">Propiedades antibacterianas, antifúngicas y antiinflamatorias. Aportan sabor y aroma mediterráneo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WELLNESS BADGES ===== -->
+<section class="wellness-section">
+  <div class="wellness-inner">
+    <div class="section-label">Beneficios Funcionales</div>
+    <h2 class="section-title">Más que una tarta: alimento funcional</h2>
+    <p class="section-desc">
+      Cada porción aporta beneficios reales a tu cuerpo, respaldados por los ingredientes naturales que usamos.
+    </p>
+    <div class="wellness-grid">
+      <div class="wellness-badge">
+        <span class="wb-icon">💪</span>
+        <div class="wb-label">Rica en<br>Proteína</div>
+      </div>
+      <div class="wellness-badge">
+        <span class="wb-icon">🌾</span>
+        <div class="wb-label">Rica en<br>Fibra</div>
+      </div>
+      <div class="wellness-badge">
+        <span class="wb-icon">☀️</span>
+        <div class="wb-label">Vitamina D<br>y B</div>
+      </div>
+      <div class="wellness-badge">
+        <span class="wb-icon">🛡️</span>
+        <div class="wb-label">Antiinfla-<br>matorio</div>
+      </div>
+      <div class="wellness-badge">
+        <span class="wb-icon">🫐</span>
+        <div class="wb-label">Anti-<br>oxidante</div>
+      </div>
+      <div class="wellness-badge">
+        <span class="wb-icon">🧬</span>
+        <div class="wb-label">Mejora la<br>inmunidad</div>
+      </div>
+      <div class="wellness-badge">
+        <span class="wb-icon">🦠</span>
+        <div class="wb-label">Prebiótico</div>
+      </div>
+      <div class="wellness-badge">
+        <span class="wb-icon">✅</span>
+        <div class="wb-label">Sin<br>octógonos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SIN OCTÓGONOS ===== -->
+<section class="octogonos-section">
+  <div class="octogonos-inner">
+    <div class="octogonos-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M8 12l3 3 5-5"/></svg>
+      <span>Sin Octógonos</span>
+    </div>
+    <p class="octogonos-text">
+      Toda la línea Convita es libre de octógonos: sin excesos de sodio, azúcares, grasas saturadas ni grasas trans. 
+      No usamos aditivos ni conservantes artificiales. Nuestros productos, al ser congelados, mantienen su frescura y calidad de forma natural.
+    </p>
+    <div class="restrictions-row">
+      <div class="restriction">
+        <div class="restriction-icon">🌾</div>
+        <span class="restriction-label">Libre de Gluten</span>
+      </div>
+      <div class="restriction">
+        <div class="restriction-icon">🥛</div>
+        <span class="restriction-label">Sin Lácteos</span>
+      </div>
+      <div class="restriction">
+        <div class="restriction-icon">🥚</div>
+        <span class="restriction-label">Sin Huevo</span>
+      </div>
+      <div class="restriction">
+        <div class="restriction-icon">🌱</div>
+        <span class="restriction-label">Vegetariano</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NUTRITIONAL TABLE ===== -->
+<section class="nutrition-section">
+  <div class="nutrition-left">
+    <div class="section-label">Información Nutricional</div>
+    <h2 class="section-title">Transparencia total</h2>
+    <p class="section-desc" style="margin-bottom:30px;">
+      Creemos que cada persona merece saber exactamente qué consume. Acá van los datos, sin letra chica.
+    </p>
+    <table class="nutri-table">
+      <thead>
+        <tr>
+          <th colspan="2" class="nutri-portion">Porción 130 g (½ unidad)</th>
+          <th>% VD*</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Valor energético</td><td><strong>196 kcal</strong> = 820 kJ</td><td>10%</td></tr>
+        <tr><td>Carbohidratos</td><td>36 g</td><td>12%</td></tr>
+        <tr><td>Proteínas</td><td>3,4 g</td><td>5%</td></tr>
+        <tr><td>Grasas totales</td><td>4,8 g</td><td>9%</td></tr>
+        <tr><td>Grasas saturadas</td><td>0,4 g</td><td>2%</td></tr>
+        <tr><td>Grasas trans</td><td class="nutri-highlight">0 g</td><td>–</td></tr>
+        <tr><td>Fibra alimentaria</td><td class="nutri-highlight">3,1 g</td><td>12%</td></tr>
+        <tr><td>Sodio</td><td>335 mg</td><td>14%</td></tr>
+      </tbody>
+    </table>
+    <p class="nutri-footnote">
+      * Valores diarios de referencia con base a una dieta de 2.000 kcal u 8.400 kJ. Sus valores pueden ser mayores o menores dependiendo de sus necesidades energéticas.
+    </p>
+  </div>
+
+  <div>
+    <div class="section-label">Ingredientes Completos</div>
+    <h2 class="section-title" style="font-size: 28px;">Lista completa</h2>
+    <div style="background:#fff; border-radius:16px; padding:32px; border:1px solid #f0ede8; margin-top:24px; line-height:1.9; font-size:15px; color:var(--text-soft);">
+      <strong style="color:var(--text);">Calabacín</strong>, cebolla, hongo shiitake, almidón de maíz, agua, <strong style="color:var(--text);">harina de garbanzo</strong>, aceite de girasol, fécula de papa, polvo de hornear (leudante químico: fosfato monocálcico, bicarbonato de sodio, pirofosfato ácido de sodio), sal, azúcar, especias, espesante: goma xántica.
+    </div>
+
+    <div style="background:var(--convita-light); border-radius:16px; padding:24px 32px; margin-top:20px;">
+      <div style="font-weight:600; font-size:14px; color:var(--convita-dark); margin-bottom:8px;">🏭 Elaboración</div>
+      <div style="font-size:13px; color:var(--text-soft); line-height:1.6;">
+        Elabora y distribuye: <strong>Integro SAS</strong><br>
+        General Pagola 1765, Montevideo<br>
+        Hab. MSP N° 2412 · I.M. Reg S.R.A N° 36594/9
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SHIITAKE STORY ===== -->
+<section class="story-section">
+  <div class="story-inner">
+    <div class="section-label" style="text-align:center;">La Historia</div>
+    <h2 class="story-question">¿Por qué elegimos el hongo shiitake para nuestras tartas?</h2>
+    <div class="story-body">
+      <p>
+        Porque el hongo shiitake, además de aportar un <strong>sabor y textura muy agradables</strong>, es una fuente importante de <strong>vitamina D y B</strong>, contiene antioxidantes, es antiinflamatorio, fortalece el sistema inmunológico y reduce el colesterol LDL.
+      </p>
+      <p>
+        También tiene un <strong>alto contenido de proteínas</strong> (alrededor del 18% cuando está seco), varios aminoácidos esenciales y fibras.
+      </p>
+      <div class="story-highlight">
+        "Utilizado durante siglos por la medicina china, japonesa y coreana por sus propiedades curativas y preventivas, como protector cardiovascular y hepático, antitumoral y antiviral."
+      </div>
+      <p>
+        Combinado con la <strong>calabaza</strong>, que es baja en calorías y rica en fibra, vitaminas y minerales, forman un <strong>dúo perfecto</strong> para lograr una tarta que te va a encantar.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONSERVATION ===== -->
+<section class="conservation-section">
+  <div class="conservation-inner">
+    <div class="cons-card">
+      <span class="cons-icon">❄️</span>
+      <div class="cons-temp">Freezer (−18 °C)</div>
+      <div class="cons-duration">Hasta fecha de vencimiento</div>
+    </div>
+    <div class="cons-card">
+      <span class="cons-icon">🧊</span>
+      <div class="cons-temp">Congelador (−4 °C)</div>
+      <div class="cons-duration">1 semana</div>
+    </div>
+    <div class="cons-card">
+      <span class="cons-icon">🌡️</span>
+      <div class="cons-temp">Refrigerador (4 °C)</div>
+      <div class="cons-duration">2 días</div>
+    </div>
+    <div class="cons-card">
+      <span class="cons-icon">⚠️</span>
+      <div class="cons-temp">Importante</div>
+      <div class="cons-duration">Una vez descongelado, no volver a congelar</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-title">¿Querés probarla?</h2>
+    <p class="cta-text">
+      Comprá directo desde nuestra tienda online o encontrala en los puntos de venta más cercanos a tu hogar.
+    </p>
+    <div class="cta-buttons">
+      <a href="https://www.convita.com.uy" class="cta-btn primary">🛒 Comprar Online</a>
+      <a href="#" class="cta-btn secondary">📍 Puntos de Venta</a>
+    </div>
+    <div class="footer-info">
+      Convita · Integro SAS · General Pagola 1765, Montevideo, Uruguay<br>
+      Tel: +598 2206 3270 · Cel: +598 91 041 886 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d5bcbbb3ba95b6babba3bca1b4fbb6bab8fba0
